@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:plantapp/pages/homebuttons.dart';
+import 'package:plantapp/pages/macro/MacroDetails.dart';
+import 'package:plantapp/pages/micro/MicroDetails.dart';
 import 'package:plantapp/pages/weatherdets.dart';
 
 class Home extends StatelessWidget {
@@ -99,9 +101,27 @@ class Home extends StatelessWidget {
                       WeatherDetails(wtype: "Wind Speed", val: "11 mph", ic: Icons.wind_power_rounded)],),
             ),
           ),
-          ButtonsHome(imgpath: "lib/images/ndvi.png", heading: "Satellite View",),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            child: GestureDetector(
+              onTap: (){Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MacroPage()),
+              );},
+                child: ButtonsHome(imgpath: "lib/images/ndvi.png", heading: "Satellite View",)),
+          ),
 
-          ButtonsHome(imgpath: "lib/images/iot.jpg", heading: "In Ground Sensors",),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            child: GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MicroPage()),
+                );
+              },
+                child: ButtonsHome(imgpath: "lib/images/iot.jpg", heading: "In Ground Sensors",)),
+          ),
 
 
 
