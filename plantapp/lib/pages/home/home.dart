@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:plantapp/pages/homebuttons.dart';
+import 'package:plantapp/pages/home/homebuttons.dart';
+import 'package:plantapp/pages/home/weather.dart';
 import 'package:plantapp/pages/macro/MacroDetails.dart';
 import 'package:plantapp/pages/micro/MicroDetails.dart';
-import 'package:plantapp/pages/weatherdets.dart';
+import 'package:plantapp/pages/home/weatherdets.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -83,24 +84,7 @@ class Home extends StatelessWidget {
           ]
         ),
 
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white, boxShadow: [new BoxShadow(
-                color: Colors.grey.shade300,
-                blurRadius: 35,
-              ),]
-              ),
-
-              child: GridView.count(crossAxisCount: 2, childAspectRatio: 2, shrinkWrap: true, padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10, ), physics: NeverScrollableScrollPhysics(),
-              children: [WeatherDetails(wtype: "Temperature", val: "30°C", ic: Icons.thermostat),
-                      WeatherDetails(wtype: "Humidity", val: "36%", ic: Icons.water),
-                      WeatherDetails(wtype: "Rainfall", val: "0mm", ic: Icons.water_drop),
-                      WeatherDetails(wtype: "Wind Speed", val: "11 mph", ic: Icons.wind_power_rounded)],),
-            ),
-          ),
+          WeatherContainer(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: GestureDetector(

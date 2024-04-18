@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:plantapp/pages/home.dart';
+import 'package:plantapp/pages/home/home.dart';
 import 'package:plantapp/pages/micro/MicroDetails.dart';
 
 void main() {
