@@ -89,88 +89,101 @@ class _NodeDetailsState extends State<NodeDetails> {
           )
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-              child: Text(
-            "Node 1 Details",
-            style: GoogleFonts.poppins(
-                color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25),
-          )),
-          Image.asset("lib/images/wheat.png"),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color.fromRGBO(161, 207, 107, 1),
-                        Color.fromRGBO(74, 173, 82, 1)
-                      ])),
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 40.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 30,),
+            Center(
+                child: Text(
+              "Node 1 Details",
+              style: GoogleFonts.poppins(
+                  color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25),
+            )),
+            Image.asset("lib/images/wheat.png"),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color.fromRGBO(161, 207, 107, 1),
+                          Color.fromRGBO(74, 173, 82, 1)
+                        ])),
+                child: GridView.count(crossAxisCount: 2, childAspectRatio: 2, shrinkWrap: true, padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10, ),
+                  physics: NeverScrollableScrollPhysics(),
+                children: [
                     SensorDetails(
-                      sensedval: "$sensedtemp°C",
-                      icon: Icons.thermostat,
-                      stype: "Temperature",
-                    ),
-                    SensorDetails(
-                      sensedval: "$sensedhumidity%",
-                      icon: Icons.water_drop,
-                      stype: "Humidity",
+                    sensedval: "$sensedtemp°C",
+                    icon: Icons.thermostat,
+                    stype: "Temperature",
                     ),
 
-                  ],
+                    SensorDetails(
+                    sensedval: "$sensedhumidity%",
+                    icon: Icons.water,
+                    stype: "Humidity",
+                    ),
+
+                    SensorDetails(
+                    sensedval: "$sensedtemp°C",
+                    icon: Icons.water_drop,
+                    stype: "Soil Moisture",
+                    ),
+
+                    SensorDetails(
+                    sensedval: "$sensedhumidity mm",
+                    icon: Icons.wb_cloudy_rounded,
+                    stype: "Rainfall",
+                    ),
+                ],
                 ),
-              ),
+            )
             ),
-          ),
-          ElevatedButton(
-            // TO DO: Add model feature here
-              onPressed: () {
-                runModel(sensedtemp, sensedhumidity, sensedrainfall);
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
+            ElevatedButton(
+              // TO DO: Add model feature here
+                onPressed: () {
+                  runModel(sensedtemp, sensedhumidity, sensedrainfall);
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  backgroundColor: Color.fromRGBO(74, 173, 82, 1),
                 ),
-                backgroundColor: Color.fromRGBO(74, 173, 82, 1),
-              ),
-              child: Text(
-                "Get Crop Recommendation",
-                style: GoogleFonts.poppins(
-                  height: 1,
-                  color: Colors.white,
-                  fontWeight: FontWeight.normal, // Different font weight
-                  fontSize: 17, // Same font size, or adjust as needed
+                child: Text(
+                  "Get Crop Recommendation",
+                  style: GoogleFonts.poppins(
+                    height: 1,
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal, // Different font weight
+                    fontSize: 17, // Same font size, or adjust as needed
+                  ),
+                )),
+            SizedBox(height: 30),
+            Column(
+              children: [
+                Text(
+                  "Irrigation Control",
+                  style: GoogleFonts.poppins(
+                    height: 1,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600, // Different font weight
+                    fontSize: 20, // Same font size, or adjust as needed
+                  ),
                 ),
-              )),
-          SizedBox(height: 30),
-          Column(
-            children: [
-              Text(
-                "Irrigation Control",
-                style: GoogleFonts.poppins(
-                  height: 1,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600, // Different font weight
-                  fontSize: 20, // Same font size, or adjust as needed
-                ),
-              ),
 
-              // IrrigationContainer()
-            ],
+                // IrrigationContainer()
+              ],
 
 
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -13,7 +13,10 @@ class SensorDetails extends StatelessWidget {
     return Row(
       children: [
         Container(
-          child: Icon(icon, size: 50, color: Colors.white,),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(icon, size: 50, color: Colors.white,),
+          ),
           decoration: BoxDecoration(
           ),
         ),
