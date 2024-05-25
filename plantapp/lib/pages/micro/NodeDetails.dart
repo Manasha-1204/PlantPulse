@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,10 +14,12 @@ class NodeDetails extends StatefulWidget {
 }
 
 class _NodeDetailsState extends State<NodeDetails> {
+  final Future<FirebaseApp> _fApp = Firebase.initializeApp();
   List result = [];
-  int sensedtemp = 35;
-  int sensedhumidity = 60;
+  String sensedtemp = "35";
+  String sensedhumidity = "60";
   double sensedrainfall = 100;
+
 
   String predicted = "";
   final List<String> labels = ['rice', 'maize', 'chickpea', 'kidneybeans', 'pigeonpeas',
@@ -114,40 +118,27 @@ class _NodeDetailsState extends State<NodeDetails> {
                           Color.fromRGBO(161, 207, 107, 1),
                           Color.fromRGBO(74, 173, 82, 1)
                         ])),
-                child: GridView.count(crossAxisCount: 2, childAspectRatio: 2, shrinkWrap: true, padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10, ),
-                  physics: NeverScrollableScrollPhysics(),
-                children: [
-                    SensorDetails(
-                    sensedval: "$sensedtemp°C",
-                    icon: Icons.thermostat,
-                    stype: "Temperature",
-                    ),
-
-                    SensorDetails(
-                    sensedval: "$sensedhumidity%",
-                    icon: Icons.water,
-                    stype: "Humidity",
-                    ),
-
-                    SensorDetails(
-                    sensedval: "$sensedtemp°C",
-                    icon: Icons.water_drop,
-                    stype: "Soil Moisture",
-                    ),
-
-                    SensorDetails(
-                    sensedval: "$sensedhumidity mm",
-                    icon: Icons.wb_cloudy_rounded,
-                    stype: "Rainfall",
-                    ),
-                ],
-                ),
+                child: FutureBuilder(
+                  future: _fApp,
+                  builder: (context, snapshot){
+                    if (snapshot.hasError){
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("Firebase Error! Try again later."),
+                      );
+                    } else if (snapshot.hasData){
+                        return sensorcontent();
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  }
+                )
             )
             ),
             ElevatedButton(
               // TO DO: Add model feature here
                 onPressed: () {
-                  runModel(sensedtemp, sensedhumidity, sensedrainfall);
+                  runModel(double.parse(sensedtemp), double.parse(sensedhumidity), sensedrainfall.toDouble());
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -187,4 +178,46 @@ class _NodeDetailsState extends State<NodeDetails> {
       ),
     );
   }
+  Widget sensorcontent(){
+    Query _tempRef = FirebaseDatabase.instance.ref().child("DHT11/Temperature");
+    Query _humidityRef = FirebaseDatabase.instance.ref().child("DHT11/Humidity");
+    _humidityRef.onValue.listen((event) {
+      setState(() {
+        sensedhumidity = event.snapshot.value ==  null? "": event.snapshot.value.toString();
+      });
+    });
+    _tempRef.onValue.listen((event) {
+      setState(() {
+        sensedtemp = event.snapshot.value ==  null? "": event.snapshot.value.toString();
+      });
+    });
+    return GridView.count(crossAxisCount: 2, childAspectRatio: 2, shrinkWrap: true, padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10, ),
+      physics: NeverScrollableScrollPhysics(),
+      children: [
+        SensorDetails(
+          sensedval: "$sensedtemp°C",
+          icon: Icons.thermostat,
+          stype: "Temperature",
+        ),
+
+        SensorDetails(
+          sensedval: "$sensedhumidity%",
+          icon: Icons.water,
+          stype: "Humidity",
+        ),
+
+        SensorDetails(
+          sensedval: "$sensedtemp°C",
+          icon: Icons.water_drop,
+          stype: "Soil Moisture",
+        ),
+
+        SensorDetails(
+          sensedval: "$sensedhumidity mm",
+          icon: Icons.wb_cloudy_rounded,
+          stype: "Rainfall",
+        ),
+      ],
+    );
+}
 }

@@ -6,7 +6,6 @@ import 'package:plantapp/pages/home/homebuttons.dart';
 import 'package:plantapp/pages/home/weather.dart';
 import 'package:plantapp/pages/macro/MacroDetails.dart';
 import 'package:plantapp/pages/micro/MicroDetails.dart';
-import 'package:plantapp/pages/home/weatherdets.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

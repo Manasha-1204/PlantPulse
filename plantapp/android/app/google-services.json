@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1048838563120",
+    "firebase_url": "https://esp-to-firebase-test-default-rtdb.firebaseio.com",
+    "project_id": "esp-to-firebase-test",
+    "storage_bucket": "esp-to-firebase-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048838563120:android:73f8c07564e7f24af254f5",
+        "android_client_info": {
+          "package_name": "com.example.plantapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048838563120-4l3l7i9790tn2cmtl5ba1fs97cq5otth.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_CFxTf4NGnY4PmL1plcfj1sP6OL49XAg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1048838563120-4l3l7i9790tn2cmtl5ba1fs97cq5otth.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
