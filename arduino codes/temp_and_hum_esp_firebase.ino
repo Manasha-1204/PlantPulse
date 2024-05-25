@@ -54,8 +54,7 @@ void setup() {
 }
 
 void loop() {
-  // Wait a few seconds between measurements
-  delay(2000);
+  delay(600000); // Delay for 600,000 milliseconds (10 minutes)
 
   // Reading temperature or humidity takes about 250 milliseconds!
   // Sensor readings may also be up to 2 seconds 'old' (it's a very slow sensor)
@@ -77,14 +76,14 @@ void loop() {
   Serial.println(" *C");
 
   // Push data to Firebase
-  if (Firebase.pushFloat(firebaseData, "/DHT11/Humidity", humidity)) {
+  if (Firebase.setFloat(firebaseData, "/DHT11/Humidity", humidity)) {
     Serial.println("Humidity data sent successfully");
   } else {
     Serial.print("Failed to send humidity data: ");
     Serial.println(firebaseData.errorReason());
   }
 
-  if (Firebase.pushFloat(firebaseData, "/DHT11/Temperature", temperature)) {
+  if (Firebase.setFloat(firebaseData, "/DHT11/Temperature", temperature)) {
     Serial.println("Temperature data sent successfully");
   } else {
     Serial.print("Failed to send temperature data: ");
