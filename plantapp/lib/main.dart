@@ -2,6 +2,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:plantapp/pages/home/home.dart';
+import 'package:plantapp/pages/start.dart';
+import 'package:plantapp/userdets.dart';
+import 'package:provider/provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,10 +17,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Home(),
-
+    return ChangeNotifierProvider(
+      create: (context) => UserInfo(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: StartPage(),
+      ),
     );
   }
 }

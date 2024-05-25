@@ -219,5 +219,5 @@ class _NodeDetailsState extends State<NodeDetails> {
         ),
       ],
     );
-}
+  }
 }

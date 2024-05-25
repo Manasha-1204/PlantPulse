@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../user/profile.dart';
+
 class MacroPage extends StatelessWidget {
   const MacroPage({super.key});
 
@@ -21,8 +23,16 @@ class MacroPage extends StatelessWidget {
           ),
         ), backgroundColor: Color.fromRGBO(161, 207, 107, 1), actions: [Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Icon(Icons.person, color: Colors.white,),
-      )],),
+      child: GestureDetector(
+          onTap: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfilePage()),
+            );
+          },
+          child: Icon(Icons.person, color: Colors.white,)
+      ),
+    ),]),
       body: ListView(
         children: [Stack(
         alignment: Alignment.bottomCenter,

@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:plantapp/constants.dart';
 import 'package:plantapp/pages/home/weatherdets.dart';
+import 'package:provider/provider.dart';
 import 'package:weather/weather.dart';
+
+import '../../userdets.dart';
 
 class WeatherContainer extends StatefulWidget {
   const WeatherContainer({super.key});
@@ -19,14 +22,14 @@ class _WeatherContainerState extends State<WeatherContainer> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _wf.currentWeatherByCityName("Coimbatore").then((w){
+    String location = Provider.of<UserInfo>(context, listen: false).location;
+    _wf.currentWeatherByCityName(location).then((w){
       setState(() {
         _weather = w;
       });
     });
 
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +45,10 @@ class _WeatherContainerState extends State<WeatherContainer> {
         ),
 
         child: GridView.count(crossAxisCount: 2, childAspectRatio: 2, shrinkWrap: true, padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10, ), physics: NeverScrollableScrollPhysics(),
-          children: [WeatherDetails(wtype: "Temperature", val: "${_weather?.temperature?.celsius?.toStringAsFixed(0)}°C", ic: Icons.thermostat),
-            WeatherDetails(wtype: "Humidity", val: "${_weather?.humidity?.toStringAsFixed(0)}%", ic: Icons.water),
+          children: [WeatherDetails(wtype: "Temperature", val: _weather?.temperature?.celsius==null?"":"${_weather?.temperature?.celsius?.toStringAsFixed(0)}°C", ic: Icons.thermostat),
+            WeatherDetails(wtype: "Humidity", val: _weather?.humidity != null?"${_weather?.humidity?.toStringAsFixed(0)}%": "", ic: Icons.water),
             const WeatherDetails(wtype: "Rainfall", val: "0mm", ic: Icons.water_drop),
-            WeatherDetails(wtype: "Wind Speed", val: "${_weather?.windSpeed?.toStringAsFixed(0)}mps", ic: Icons.wind_power_rounded)],),
+            WeatherDetails(wtype: "Wind Speed", val: _weather?.windSpeed != null? "${_weather?.windSpeed?.toStringAsFixed(0)}mps": "", ic: Icons.wind_power_rounded)],),
       ),
     );
   }
