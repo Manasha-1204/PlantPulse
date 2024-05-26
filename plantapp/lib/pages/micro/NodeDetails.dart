@@ -18,7 +18,7 @@ class _NodeDetailsState extends State<NodeDetails> {
   List result = [];
   String sensedtemp = "35";
   String sensedhumidity = "60";
-  double sensedrainfall = 100;
+  double sensedrainfall = 20;
 
 
   String predicted = "";
@@ -56,7 +56,7 @@ class _NodeDetailsState extends State<NodeDetails> {
 
     setState(() {
       predicted = labels[maxIndex];
-      print(predicted);
+      // print(predicted);
     });
   }
 
@@ -139,6 +139,7 @@ class _NodeDetailsState extends State<NodeDetails> {
               // TO DO: Add model feature here
                 onPressed: () {
                   runModel(double.parse(sensedtemp), double.parse(sensedhumidity), sensedrainfall.toDouble());
+                  showRecommendationResult(context, predicted);
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -220,4 +221,46 @@ class _NodeDetailsState extends State<NodeDetails> {
       ],
     );
   }
+
+}
+void showRecommendationResult(BuildContext context, String crop) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('OK'),
+          ),
+        ],
+        title: Text('Recommended Crop', style: GoogleFonts.poppins(
+          height: 1,
+          color: Colors.black,
+          fontWeight: FontWeight.w600, // Different font weight
+          fontSize: 20, // Same font size, or adjust as needed
+        ),),
+        content: Column(
+            mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('Based on the provided data and the Machine Learning model, the recommended crop is for these conditions is:', style: GoogleFonts.poppins(
+              height: 1,
+              color: Colors.black,
+              fontWeight: FontWeight.w300, // Different font weight
+              fontSize: 15, // Same font size, or adjust as needed
+            )),
+            SizedBox(height: 10,),
+            Text(crop.toUpperCase(), style: GoogleFonts.poppins(
+              height: 1,
+              color: Colors.black,
+              fontWeight: FontWeight.w900, // Different font weight
+              fontSize: 20, // Same font size, or adjust as needed
+            ), ),
+          ]
+        )
+      );
+    },
+  );
 }
