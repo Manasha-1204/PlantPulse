@@ -14,7 +14,7 @@ class SensorDetails extends StatelessWidget {
       children: [
         Container(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(right: 5.0),
             child: Icon(icon, size: 50, color: Colors.white,),
           ),
           decoration: BoxDecoration(

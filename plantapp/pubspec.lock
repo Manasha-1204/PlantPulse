@@ -328,6 +328,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  semicircle_indicator:
+    dependency: "direct main"
+    description:
+      name: semicircle_indicator
+      sha256: "4ff9d80898c9032c314ea270f6f887f4056cac2f10cdfa1e7f5e6c300124e4e0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   sky_engine:
     dependency: transitive
     description: flutter
