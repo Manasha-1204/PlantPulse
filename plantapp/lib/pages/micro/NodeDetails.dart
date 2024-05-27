@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:plantapp/pages/micro/semicircle_indicator.dart';
 import 'package:plantapp/pages/micro/sensordets.dart';
-import 'package:semicircle_indicator/semicircle_indicator.dart';
 import 'package:tflite_flutter/tflite_flutter.dart' as tfl;
 
 class NodeDetails extends StatefulWidget {
@@ -23,12 +22,14 @@ class _NodeDetailsState extends State<NodeDetails> {
   double sensedrainfall = 20;
   double soilmoisture = 25;
   bool motor = false;
+  final DatabaseReference _motorRef = FirebaseDatabase.instance.ref().child('Motor');
 
   motor_switch() async{
     setState(() {
       motor =  !motor;
       print(motor);
     });
+    await _motorRef.set(motor);
   }
 
   String predicted = "";
