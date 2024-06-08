@@ -3,9 +3,13 @@
 #include <FirebaseESP8266.h>
 #include <DHT.h>
 
+#define AOUT_PIN A0 
+const int minMoistureValue = 0;    // Analog reading for very wet soil
+const int maxMoistureValue = 1023; // Analog reading for very dry soil
+
 #define RELAY_PIN D1 // The ESP8266 pin connected to the IN pin of relay
-#define DHTPIN 4  // Set the pin connected to the DHT11 data pin
-#define DHTTYPE DHT11 // DHT 11 
+#define DHTPIN 4  // Pin connected to the DHT11 data pin
+#define DHTTYPE DHT11 
 DHT dht(DHTPIN, DHTTYPE);
 
 #define FIREBASE_HOST "esp-to-firebase-test-default-rtdb.firebaseio.com"
@@ -56,7 +60,6 @@ void setup() {
   digitalWrite(RELAY_PIN, HIGH);  // turn off pump (active-low relay)
 }
 
-
 bool readMotorStatus() {
   if (Firebase.getBool(firebaseData, "/Motor")) {
     if (firebaseData.dataType() == "boolean") {
@@ -66,6 +69,26 @@ bool readMotorStatus() {
     Serial.println("Failed to get motor status: " + firebaseData.errorReason());
   }
   return false; // default to off in case of error
+}
+
+void sendSoilMoistureData(){
+  int sensorValue = analogRead(AOUT_PIN); // Read the analog value from sensor
+  
+  // Map the sensor value to a percentage (0% to 100%)
+  int moisturePercent = map(sensorValue, minMoistureValue, maxMoistureValue, 100, 0);
+
+  Serial.print("Moisture: ");
+  Serial.print(sensorValue);
+  Serial.print(" -> ");
+  Serial.print(moisturePercent);
+  Serial.println("%");
+
+  if (Firebase.setInt(firebaseData, "/SoilMoisture", moisturePercent)) {
+    Serial.println("Soil Moisture data sent successfully");
+  } else {
+    Serial.print("Failed to send soil moisture data: ");
+    Serial.println(firebaseData.errorReason());
+  }
 }
 
 void sendDHTdata(){
@@ -101,9 +124,11 @@ void sendDHTdata(){
     Serial.println(firebaseData.errorReason());
   }
 }
-// The loop function repeats indefinitely
+
+
 void loop() {
   sendDHTdata();
+  sendSoilMoistureData();
   bool motorStatus = readMotorStatus();
   
   if (motorStatus) {
@@ -111,5 +136,5 @@ void loop() {
   } else {
     digitalWrite(RELAY_PIN, HIGH);  // turn off pump (active-low relay)
   }
-  delay(4000); // check status every 2 seconds
+  delay(2000); // check status every 2 seconds
 }
