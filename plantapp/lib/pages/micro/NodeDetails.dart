@@ -20,7 +20,7 @@ class _NodeDetailsState extends State<NodeDetails> {
   String sensedtemp = "35";
   String sensedhumidity = "60";
   double sensedrainfall = 20;
-  double soilmoisture = 25;
+  String soilmoisture = "25";
   bool motor = false;
   final DatabaseReference _motorRef = FirebaseDatabase.instance.ref().child('Motor');
 
@@ -199,6 +199,86 @@ class _NodeDetailsState extends State<NodeDetails> {
     );
   }
 
+  Widget smartirrigation(VoidCallback motorSwitch, bool motor) {
+    Query _soilmoisture =
+    FirebaseDatabase.instance.ref().child("SoilMoisture");
+    _soilmoisture.onValue.listen((event) {
+      setState(() {
+        soilmoisture =
+        event.snapshot.value == null ? "" : event.snapshot.value.toString();
+      });
+    });
+
+    return Column(children: [
+      Text(
+        "Smart Irrigation",
+        style: GoogleFonts.poppins(
+          height: 1,
+          color: Colors.black,
+          fontWeight: FontWeight.w600, // Different font weight
+          fontSize: 20, // Same font size, or adjust as needed
+        ),
+      ),
+      SizedBox(
+        height: 70,
+      ),
+      Container(
+        width: 180,
+        child: CustomSemicircularIndicator(
+          radius: 100,
+          progress: int.parse(soilmoisture)/100, // Set the progress value here
+          color: Color.fromRGBO(151, 203, 104, 1),
+          backgroundColor: Color.fromRGBO(0, 100, 53, 1),
+          strokeWidth: 25,
+          child: Column(
+            children: [
+              Text(
+                '${soilmoisture}%',
+                style: GoogleFonts.poppins(
+                  fontSize: 35,
+                  fontWeight: FontWeight.w800,
+                  color: Color.fromRGBO(0, 100, 53, 1),
+                  height: 0.7,
+                ),
+              ),
+              Text(
+                'Soil Moisture',
+                style: GoogleFonts.poppins(
+                    fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black),
+              ),
+            ],
+          ),
+        ),
+      ),
+      SizedBox(
+        height: 25,
+      ),
+      GestureDetector(
+        onTap: motorSwitch,
+        child: Container(
+          width: 200,
+          decoration: BoxDecoration(
+            color: motor? Colors.red : Color.fromRGBO(203, 203, 203, 1),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(motor ? "Motor On" : "Motor Off",
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  color: motor? Colors.white : Colors.black,
+                  fontWeight: motor? FontWeight.w800 : FontWeight.w400,
+                ),),
+            ),
+          ),
+        ),
+      )
+      // IrrigationContainer()
+    ]);
+  }
+
+
   Widget sensorcontent() {
     Query _tempRef = FirebaseDatabase.instance.ref().child("DHT11/Temperature");
     Query _humidityRef =
@@ -236,75 +316,6 @@ class _NodeDetailsState extends State<NodeDetails> {
   }
 }
 
-Widget smartirrigation(VoidCallback motorSwitch, bool motor) {
-  return Column(children: [
-    Text(
-      "Smart Irrigation",
-      style: GoogleFonts.poppins(
-        height: 1,
-        color: Colors.black,
-        fontWeight: FontWeight.w600, // Different font weight
-        fontSize: 20, // Same font size, or adjust as needed
-      ),
-    ),
-    SizedBox(
-      height: 70,
-    ),
-    Container(
-      width: 180,
-      child: CustomSemicircularIndicator(
-        radius: 100,
-        progress: 0.75, // Set the progress value here
-        color: Color.fromRGBO(151, 203, 104, 1),
-        backgroundColor: Color.fromRGBO(0, 100, 53, 1),
-        strokeWidth: 25,
-        child: Column(
-          children: [
-            Text(
-              '${(0.75 * 100).toInt()}%',
-              style: GoogleFonts.poppins(
-                fontSize: 35,
-                fontWeight: FontWeight.w800,
-                color: Color.fromRGBO(0, 100, 53, 1),
-                height: 0.7,
-              ),
-            ),
-            Text(
-              'Soil Moisture',
-              style: GoogleFonts.poppins(
-                  fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black),
-            ),
-          ],
-        ),
-      ),
-    ),
-    SizedBox(
-      height: 25,
-    ),
-    GestureDetector(
-      onTap: motorSwitch,
-      child: Container(
-        width: 200,
-        decoration: BoxDecoration(
-          color: motor? Colors.red : Color.fromRGBO(203, 203, 203, 1),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: Text(motor ? "Motor On" : "Motor Off",
-              style: GoogleFonts.poppins(
-              fontSize: 20,
-              color: motor? Colors.white : Colors.black,
-              fontWeight: motor? FontWeight.w800 : FontWeight.w400,
-            ),),
-          ),
-        ),
-      ),
-    )
-    // IrrigationContainer()
-  ]);
-}
 
 void showRecommendationResult(BuildContext context, String crop) {
   showDialog(
