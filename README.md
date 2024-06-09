@@ -13,7 +13,7 @@ PlantPulse is designed to monitor environmental conditions and automate irrigati
 
 ## Tech Stack
 
-<img src="https://skillicons.dev/icons?i=arduino,flutter,firebase,figma,python,tensorflow,gcp" />
+<img src="https://skillicons.dev/icons?i=arduino,flutter,firebase,androidstudio,python,tensorflow,figma,gcp" />
 
 
 ### Hardware
