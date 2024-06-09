@@ -5,6 +5,7 @@ Welcome to **PlantPulse** – a precision agriculture project using IoT, remote 
 
 PlantPulse is designed to monitor environmental conditions and automate irrigation in real-time. Using an array of sensors and communication modules, this system collects data on soil moisture, temperature, and humidity, processes it, and takes appropriate actions to maintain optimal growing conditions. The project integrates hardware components like NodeMCU ESP 8266, soil moisture sensors, a water pump, and DHT11 temperature and humidity sensors with software tools like Firebase and Flutter.
 
+View our presentation [here!](https://www.canva.com/design/DAGHV7HmvDI/uGV4J3Odjr541LO5ZRu4Cw/view?utm_content=DAGHV7HmvDI&utm_campaign=designshare&utm_medium=link&utm_source=editor)
 
 ## Repository Structure
 
