@@ -1,5 +1,4 @@
-# **PlantPulse**
-
+![Plant Pulse B2](https://github.com/Manasha-1204/PlantPulse/assets/111682039/5c9e02d3-4102-42d5-9b91-4b2f3ad4490b)
 Welcome to **PlantPulse** – a precision agriculture project using IoT, remote sensing, and machine learning to optimize farming practices.
 
 ## Project Overview
