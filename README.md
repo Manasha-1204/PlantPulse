@@ -7,14 +7,13 @@ PlantPulse is designed to monitor environmental conditions and automate irrigati
 
 View our presentation [here!](https://www.canva.com/design/DAGHV7HmvDI/uGV4J3Odjr541LO5ZRu4Cw/view?utm_content=DAGHV7HmvDI&utm_campaign=designshare&utm_medium=link&utm_source=editor) 📝👀
 
-## Repository Structure 📂
-
-- **arduino_codes/**: Contains the Arduino sketches for reading sensor data and controlling the water pump.
-- **plantapp/**: Contains the Flutter application code for real-time monitoring and manual control of the irrigation system. 📱
-
 ## Tech Stack ⚙️
 
 <img src="https://skillicons.dev/icons?i=arduino,flutter,firebase,androidstudio,python,tensorflow,figma,gcp" />
+
+## App Demo 📱
+
+[plantpulse app demo.webm](https://github.com/Manasha-1204/PlantPulse/assets/111682039/a935d202-7b46-4301-9fca-a2b343612c90)
 
 ## Hardware 🛠️
 - **ESP 8266 Wi-Fi Module**
@@ -26,6 +25,12 @@ View our presentation [here!](https://www.canva.com/design/DAGHV7HmvDI/uGV4J3Odj
 
 ## Circuit Diagram ⚡
 <img src="https://github.com/Manasha-1204/PlantPulse/assets/111682039/1889ded3-e6df-4e05-98a4-7ca4b3f71d1e" width="400px">
+
+## Repository Structure 📂
+
+- **arduino codes/**: Contains the Arduino sketches for reading sensor data, controlling the water pump and integrating them with Firebase Database.
+- **croprec model/**: Contains the TensorFlow Lite model for crop recommendation.
+- **plantapp/**: Contains the Flutter application code for the app. 
 
 ## Contributors 🤝
 <table style="border: none;">
