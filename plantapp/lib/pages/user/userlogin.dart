@@ -34,15 +34,21 @@ class UserLogin extends StatelessWidget {
           children: [
             TextField(
               controller: nameController,
-              decoration: InputDecoration(labelText: 'Name'),
+              decoration: InputDecoration(labelText: 'Name', labelStyle: TextStyle(color: Colors.black), focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.green, width: 2.0), // Set the underline color to green
+              ),),
             ),
             TextField(
               controller: locationController,
-              decoration: InputDecoration(labelText: 'Location'),
+              decoration: InputDecoration(labelText: 'Location', labelStyle: TextStyle(color: Colors.black), focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.green, width: 2.0), // Set the underline color to green
+            ),),
             ),
             TextField(
               controller: cropController,
-              decoration: InputDecoration(labelText: 'Crop'),
+              decoration: InputDecoration(labelText: 'Crop',labelStyle: TextStyle(color: Colors.black), focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.green, width: 2.0), // Set the underline color to green
+            ),),
             ),
             SizedBox(height: 20),
             GestureDetector(

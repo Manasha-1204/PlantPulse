@@ -105,21 +105,29 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
           ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Name"),
-            subtitle: Text(username ?? ""), // Display name from UserInfo
-          ),
-          ListTile(
-            leading: Icon(Icons.location_on),
-            title: Text("Location"),
-            subtitle: Text(location ?? ""), // Display location from UserInfo
-          ),
-          ListTile(
-            leading: Icon(Icons.agriculture),
-            title: Text("Crop"),
-            subtitle: Text(crop ?? ""), // Display crop from UserInfo
-          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Wrap(
+              children: [
+                ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text("Name"),
+                  subtitle: Text(username ?? ""), // Display name from UserInfo
+                ),
+                ListTile(
+                  leading: Icon(Icons.location_on),
+                  title: Text("Location"),
+                  subtitle: Text(location ?? ""), // Display location from UserInfo
+                ),
+                ListTile(
+                  leading: Icon(Icons.agriculture),
+                  title: Text("Crop"),
+                  subtitle: Text(crop ?? ""), // Display crop from UserInfo
+                ),
+              ],
+            ),
+          )
+
         ],
       ),
     );

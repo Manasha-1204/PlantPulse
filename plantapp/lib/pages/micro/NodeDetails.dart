@@ -17,10 +17,10 @@ class NodeDetails extends StatefulWidget {
 class _NodeDetailsState extends State<NodeDetails> {
   final Future<FirebaseApp> _fApp = Firebase.initializeApp();
   List result = [];
-  String sensedtemp = "35";
-  String sensedhumidity = "60";
+  String sensedtemp = "0";
+  String sensedhumidity = "0";
   double sensedrainfall = 20;
-  String soilmoisture = "25";
+  String soilmoisture = "0";
   bool motor = false;
   final DatabaseReference _motorRef = FirebaseDatabase.instance.ref().child('Motor');
 
