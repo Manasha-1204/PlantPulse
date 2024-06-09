@@ -3,7 +3,7 @@ Welcome to **PlantPulse** – a precision agriculture project using IoT, remote 
 
 ## Project Overview
 
-PlantPulse is designed to monitor environmental conditions and automate irrigation in real-time. Using an array of sensors and communication modules, this system collects data on soil moisture, temperature, and humidity, processes it, and takes appropriate actions to maintain optimal growing conditions. The project integrates hardware components like Arduino Mega 2560, ESP 8266, soil moisture sensors, a water pump, and DHT11 temperature and humidity sensors with software tools like Firebase and Flutter.
+PlantPulse is designed to monitor environmental conditions and automate irrigation in real-time. Using an array of sensors and communication modules, this system collects data on soil moisture, temperature, and humidity, processes it, and takes appropriate actions to maintain optimal growing conditions. The project integrates hardware components like NodeMCU ESP 8266, soil moisture sensors, a water pump, and DHT11 temperature and humidity sensors with software tools like Firebase and Flutter.
 
 
 ## Repository Structure
@@ -17,11 +17,11 @@ PlantPulse is designed to monitor environmental conditions and automate irrigati
 
 
 ### Hardware
-- **Arduino Mega 2560**
 - **ESP 8266 Wi-Fi Module**
 - **Soil Moisture Sensor**
 - **DHT11 Temperature and Humidity Sensor**
 - **Water Pump**
+- **Relay Module**
 
 ## Getting Started
 
@@ -29,13 +29,13 @@ PlantPulse is designed to monitor environmental conditions and automate irrigati
 
 To run this project, you will need:
 
-- Arduino Mega 2560
 - ESP 8266 Wi-Fi module
 - Soil moisture sensor
 - DHT11 temperature and humidity sensor
 - Water pump
 - Firebase account
 - Flutter SDK
+- Android Studio
 - Arduino IDE
 
 ### Hardware Setup
