@@ -23,6 +23,10 @@ View our presentation [here!](https://www.canva.com/design/DAGHV7HmvDI/uGV4J3Odj
 - **Relay Module**
 - **9V battery**
 
+## Hardware Implementation 🌿
+
+<img src="https://github.com/Manasha-1204/PlantPulse/assets/111682039/62edf59a-6f88-47c0-aee1-cb0d47e1194b" width="500px">
+
 ## Circuit Diagram ⚡
 <img src="https://github.com/Manasha-1204/PlantPulse/assets/111682039/1889ded3-e6df-4e05-98a4-7ca4b3f71d1e" width="400px">
 
