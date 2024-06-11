@@ -49,7 +49,7 @@ View our presentation [here!](https://www.canva.com/design/DAGHV7HmvDI/uGV4J3Odj
 
 ## Contributing 🌟
 
-We welcome contributions to enhance the functionality of PlantPulse. If you have ideas or improvements, please submit a pull request. 🚀
+We welcome contributions to enhance the functionality of PlantPulse! If you have ideas or improvements, please submit a pull request . 🚀
 
 ## License 📜
 
@@ -57,6 +57,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact 📧
 
-For any queries or support, please contact us at [amrithanandini2003@gmail.com](mailto:amrithanandini2003@gmail.com). 📬
+For any queries or support, please contact us at [amrithanandini2003@gmail.com](mailto:amrithanandini2003@gmail.com). We're here to help you!📬
 
 Thank you for using PlantPulse! Let's revolutionize agriculture together. 🌾🚜
