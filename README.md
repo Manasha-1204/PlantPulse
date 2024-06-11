@@ -53,7 +53,7 @@ We welcome contributions to enhance the functionality of PlantPulse. If you have
 
 ## License 📜
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. 📄
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details . 📄
 
 ## Contact 📧
 
